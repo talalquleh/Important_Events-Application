@@ -1,0 +1,14 @@
+<!-- main page -->
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-4">Important Events</h1>
+    <p class="lead">Manage all your events in one application</p>
+    <img class="lead" src="/assets/events.png" alt="" height="200" width="200" />
+    <div *ngIf="events">
+      <p class="lead">You have {{ events.length }} important events</p>
+      <p class="lead">between {{ mostRecentDate() }} and {{ latestDate() }}</p>
+    </div>
+
+    <!-- <p><a class="btn btn-primary" routerLink="/issues/new" role="button" >New issue</a></p> -->
+  </div>
+</div>

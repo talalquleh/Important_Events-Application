@@ -1,0 +1,86 @@
+<h1 *ngIf="event.id">Edit Event</h1>
+<h1 *ngIf="!event.id">New Event</h1>
+<!-- {{ event | json }} -->
+<!-- {{ eventForm.value | json }} -->
+<form [formGroup]="eventForm" (ngSubmit)="handleSubmit()">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      class="form-control is-invalid"
+      id="title"
+      placeholder="Title"
+      formControlName="title"
+      [class.is-invalid]="title.invalid && (title.dirty || title.touched||!title.touched)"
+      [class.is-valid]="title.valid"
+      required
+    />
+    <div class="invalid-feedback">Please provide a title!</div>
+  </div>
+  <div class="form-group">
+    <label for="description">Note</label>
+    <textarea
+      class="form-control"
+      id="description"
+      rows="5"
+      formControlName="note"
+      [class.is-invalid]="note.invalid && (note.dirty || note.touched)"
+      [class.is-valid]="note.valid"
+    ></textarea>
+    <!-- <div class="invalid-feedback">Please provide a note!</div> -->
+  </div>
+  <div class="form-group">
+    <label for="place">Location</label>
+    <input
+      type="text"
+      class="form-control"
+      id="place"
+      placeholder="Place"
+      formControlName="place"
+      required
+      [class.is-invalid]="place.invalid && (place.dirty || place.touched||!place.touched)"
+      [class.is-valid]="place.valid"
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="place.invalid&&place.errors?.['required']"
+    >
+      <!-- {{place.errors|json}}  -->
+      location name can't be empty
+    </div>
+    <div
+      class="invalid-feedback"
+      *ngIf="place.invalid&&place.errors?.['pattern']"
+    >
+      Please provide a location in correct format
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="status">Date (Y-M-D) </label>
+    <input
+      type="text"
+      id="date"
+      name="date"
+      [class.is-invalid]="date.invalid && (date.dirty || date.touched||!date.touched)"
+      [class.is-valid]="date.valid"
+      formControlName="date"
+      class="d-block form-control"
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="date.invalid&&date.errors?.['required']"
+    >
+      Please provide a date!
+    </div>
+    <div
+      class="invalid-feedback"
+      *ngIf="date.invalid&&date.errors?.['pattern']"
+    >
+      Please provide a date in correct format
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="eventForm.invalid">
+    Submit
+  </button>
+</form>

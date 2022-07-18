@@ -1,0 +1,74 @@
+<!-- Events-list page -->
+<div class="container my-3">
+  <h2 class="display-2 my-3">My Events</h2>
+  <p>
+    <a class="btn btn-info" routerLink="/events/new" role="button">New Event</a>
+  </p>
+
+  <!-- <app-issue-filter [status]="status" (statusChange)="handleStatusChange($event)"></app-issue-filter> -->
+  <hr />
+  <div class="row">
+    <div class="col">
+      <div class="list-group">
+        <a
+          *ngFor="let event of events"
+          class="list-group-item list-group-item-action"
+        >
+          <!-- routerLink="/issues/1" -->
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-inline-block">
+              <div
+                class="d-flex w-100 justify-content-between align-items-center"
+              >
+                <h5 class="mb-1">{{ event.title }}</h5>
+                <!-- <span class="badge" [class.badge-danger]="issue.status === 'DOING'" [class.badge-warning]="issue.status === 'NEW'" [class.badge-success]="issue.status === 'DONE'">{{ -->
+                <!-- issue.status -->
+                <!-- }}</span> -->
+              </div>
+              <p class="mb-1">
+                <img src="/assets/comments.png" height="20" width="20" alt="" />
+                {{ event.note }}
+              </p>
+              <small>
+                <i class="fas fa-map-marker-alt">
+                  <img
+                    src="/assets/location.png"
+                    height="20"
+                    width="20"
+                    alt=""
+                  />
+                  {{ event.place }}</i
+                >
+              </small>
+              <div class="d-flex justify-content-between align-items-center">
+                <h6 class="font-weight-bold">
+                  <img src="/assets/date.png" height="20" width="20" alt="" />
+
+                  {{ event.date }}
+                </h6>
+                <!-- <span class="badge" [class.badge-danger]="issue.status === 'DOING'" [class.badge-warning]="issue.status === 'NEW'" [class.badge-success]="issue.status === 'DONE'">{{ -->
+                <!-- issue.status -->
+                <!-- }}</span> -->
+              </div>
+            </div>
+            <div class="d-inline-block">
+              <a
+                class="btn btn-info"
+                routerLink="/events/{{ event.id }}/edit"
+                role="button"
+                >Edit</a
+              >
+              <a
+                class="btn btn-info m-2"
+                role="button"
+                (click)="DeleteEvent(event)"
+                >Delete</a
+              >
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <!-- {{selectedIssue | json}} to json stringfy this object   -->
+  </div>
+</div>
